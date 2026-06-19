@@ -222,16 +222,47 @@ function initMap() {
           attribution: '© OpenStreetMap contributors',
           maxZoom: 19
         }).addTo(currentMap);
+        
+        // Voeg click listener toe voor tekenen
+        currentMap.on('click', function(e) {
+          if (drawingMode) {
+            const lat = e.latlng.lat;
+            const lng = e.latlng.lng;
+            
+            drawnPoints.push([lat, lng]);
+            
+
+            const marker = L.circleMarker([lat, lng], {radius: 3, color: 'red'}).addTo(currentMap);
+            drawnMarkers.push(marker);
+            
+
+            if (currentPolyline) {
+              currentMap.removeLayer(currentPolyline);
+            }
+            
+            currentPolyline = L.polyline(drawnPoints, {
+              color: 'red',
+              weight: 2,
+              dashArray: '5, 5'
+            }).addTo(currentMap);
+          }
+        });
       }
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '© OpenStreetMap contributors',
+          maxZoom: 19
+        }).addTo(currentMap);
+      
 
       L.marker([lat, lon])
         .addTo(currentMap)
         .bindPopup(input)
         .openPopup();
-    })
-    .catch(error => console.error(error));
-}
+    
 
+  })
+}
 
 
 function handleWindowTap(element) {
@@ -281,34 +312,3 @@ document.getElementById("clear-btn").addEventListener("click", function() {
     drawnPoints = [];
   }
 });
-
-const originalInitMap = window.initMap;
-window.initMap = function() {
-  originalInitMap.call(this);
-  
-  if (currentMap) {
-    currentMap.on('click', function(e) {
-      if (drawingMode) {
-        const lat = e.latlng.lat;
-        const lng = e.latlng.lng;
-        
-        drawnPoints.push([lat, lng]);
-        
-
-        const marker = L.circleMarker([lat, lng], {radius: 3, color: 'red'}).addTo(currentMap);
-        drawnMarkers.push(marker);
-        
-
-        if (currentPolyline) {
-          currentMap.removeLayer(currentPolyline);
-        }
-        
-        currentPolyline = L.polyline(drawnPoints, {
-          color: 'red',
-          weight: 2,
-          dashArray: '5, 5'
-        }).addTo(currentMap);
-      }
-    });
-  }
-};
