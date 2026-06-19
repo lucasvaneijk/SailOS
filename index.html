@@ -4,19 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <title>Document</title>
 </head>
 <body>
+    <div class="invis-div"></div>
     <div id="weatherappicon" class="weatherappicon">
         ☁️  
+    </div>
+    <div id="mapappicon" class="mapappicon">
+        📍
     </div>
     <div id="movable-div" class="movable-div">
         <div id="movable-divheader" class="movable-divheader">
             <p id="movable-div-expand" class="movable-div-expand">⬛</p>
             <p id="movable-div-close" class="movable-div-close">❌</p>
         </div>
-        <div id="movable-div-content" class="movable-div-content">
-            <h1 class="content-movabe-div">Hallo</h1>
+        <div id="movable-div-content" class="movable-div-content">       
+            <input class="place-input" id="place-input" onblur="getData()"onkeypress="if(event.key === 'Enter') getData()">
+            <div class="weather-result" id="weather-result"></div>
         </div>
     </div>
     <div></div>
@@ -30,6 +37,20 @@
             </p>
         </div>
     </div>
+    <div class="map-page-div" id="map-page-div">
+        <div id="map-page-divheader" class="map-page-divheader">
+
+            <p id="map-page-divexpand" class="map-page-divexpand">⬛</p>
+            <p id="map-page-divclose" class="map-page-divclose">❌</p>
+        </div>
+        <input id="input-map" class="input-map" placeholder="Voer locatie in..." onblur="initMap()" onkeypress="if(event.key === 'Enter') initMap()">
+        <div id="map" class="map"></div>
+        <div>    
+            <button id="draw-btn" class="draw-btn">✏️ Tekenen</button>
+            <button id="clear-btn" class="clear-btn">🗑️ Wissen</button>
+        </div>
+    </div>
     <script src="app.js"></script>
+    
 </body>
 </html>
