@@ -24,7 +24,7 @@
             <p id="movable-div-close" class="movable-div-close">❌</p>
         </div>
         <div id="movable-div-content" class="movable-div-content">       
-            <input class="place-input" id="place-input" onblur="getData()"onkeypress="if(event.key === 'Enter') getData()">
+            <input class="place-input" id="place-input" onblur="getData()" onkeypress="if(event.key === 'Enter') getData()" placeholder="enter location">
             <div class="weather-result" id="weather-result"></div>
         </div>
     </div>
@@ -45,11 +45,11 @@
             <p id="map-page-divexpand" class="map-page-divexpand">⬛</p>
             <p id="map-page-divclose" class="map-page-divclose">❌</p>
         </div>
-        <input id="input-map" class="input-map" placeholder="Voer locatie in..." onblur="initMap()" onkeypress="if(event.key === 'Enter') initMap()">
+        <input id="input-map" class="input-map" placeholder="enter location" onblur="initMap()" onkeypress="if(event.key === 'Enter') initMap()">
         <div id="map" class="map"></div>
         <div>    
-            <button id="draw-btn" class="draw-btn">✏️ Tekenen</button>
-            <button id="clear-btn" class="clear-btn">🗑️ Wissen</button>
+            <button id="draw-btn" class="draw-btn">✏️ draw</button>
+            <button id="clear-btn" class="clear-btn">🗑️ remove</button>
         </div>
     </div>
     <script src="app.js"></script>

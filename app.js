@@ -49,7 +49,8 @@ function getData() {
               fragment.appendChild(p)
             }
             const div = document.createElement("div");
-            div.textContent = `${data.hourly.time[i].substring(11, 16)}, ${data.hourly.temperature_2m[i]}C°, ${Math.round((data.hourly.wind_speed_10m[i] * 0.539957) * 1)}-${Math.round((data.hourly.wind_gusts_10m[i] * 0.539957) * 1)} knots, ${data.hourly.wind_direction_10m[i]}°`;
+            div.innerHTML = `<span style="font-size: 1.5rem;">${data.hourly.time[i].substring(11, 16)}</span> <span style="display: inline-block; transform: rotate(${data.hourly.wind_direction_10m[i]}deg); font-size: 1.5rem">➤</span><span style="font-size: 1.5rem;">${Math.round((data.hourly.wind_speed_10m[i] * 0.539957) * 1)}-${Math.round((data.hourly.wind_gusts_10m[i] * 0.539957) * 1)} knt</span><span style="font-size: 1.5rem;">${data.hourly.wind_direction_10m[i]}°</span>`
+            //div.textContent = `${data.hourly.time[i].substring(11, 16)}, ${data.hourly.temperature_2m[i]}C°, ${Math.round((data.hourly.wind_speed_10m[i] * 0.539957) * 1)}-${Math.round((data.hourly.wind_gusts_10m[i] * 0.539957) * 1)} knots, ${data.hourly.wind_direction_10m[i]}° ⬆️.`;
             fragment.appendChild(div);
           }
 
